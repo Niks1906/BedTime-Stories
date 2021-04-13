@@ -1,11 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity,KeyboardAvoidingView,ToastAndroid,Alert } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 import {Header} from 'react-native-elements';
-import db from '../config';
-import firebase from 'firebase';
+import db from '../config'
+//import firebase from 'firebase'
 
- 
 export default class WriteStoryScreen extends React.Component {
     constructor(props){
         super(props);
@@ -16,31 +15,14 @@ export default class WriteStoryScreen extends React.Component {
         }
     }
 
-    submitStory=()=>{
-        db.collection("newstories").add({
-            title : this.state.title,
-            author : this.state.author,
-            storyText : this.state.storyText
-
-        })
-        this.setState({
-            title: ' ',
-            author: ' ',
-            storyText: ' '
-        })
-
-        //  Alert.alert("Your story has been submitted")
-        ToastAndroid.show("Your story has been submitted",ToastAndroid.SHORT)
-    }
-
     render(){
         return(
-            <KeyboardAvoidingView style={styles.container} behavior = "padding" enabled>
+            <View style={styles.container}>
                 <Header 
                     backgroundColor = {'pink'}
                     centerComponent = {{
-                        text : 'Story Hub',
-                        style : { color: 'black', fontSize: 30}
+                        text : 'Bed Time Stories',
+                        style : { color: 'white', fontSize: 20}
                     }}
                 />
                 <TextInput 
@@ -51,8 +33,7 @@ export default class WriteStoryScreen extends React.Component {
                         })
                     }}
                     value={this.state.title}
-                    style={styles.title}
-                    placeholderTextColor='black'/>
+                    style={styles.title}/>
                 <TextInput
                     placeholder="Author"
                     onChangeText= {(text)=>{
@@ -60,7 +41,6 @@ export default class WriteStoryScreen extends React.Component {
                             author: text
                         })
                     }}
-                    placeholderTextColor='black'
                     value={this.state.author}
                     style={styles.author} />
                 <TextInput 
@@ -70,21 +50,15 @@ export default class WriteStoryScreen extends React.Component {
                             storyText: text
                         })
                     }}
-                    placeholderTextColor='black'
                     value={this.state.storyText}
                     style={styles.storyText}
                     multiline={true}/>
                 
                 <TouchableOpacity
-                    style={styles.submitButton}
-                    onPress = {()=>{
-                        this.submitStory()
-                    }}
-                   
-                   >
+                    style={styles.submitButton}>
                     <Text style={styles.buttonText}>Submit</Text>
                 </TouchableOpacity>
-            </KeyboardAvoidingView>
+            </View>
         );
     }
 }
@@ -98,34 +72,28 @@ const styles = StyleSheet.create({
       height: 40,
       borderWidth: 2,
       marginTop: 40,
-      margin: 10,
-      color:'black',
-      padding: 6,
-
+      margin: 10
   },
   author: {
       height: 40,
       borderWidth: 2,
-      margin: 10,
-       padding: 6,
+      margin: 10
   },
   storyText: {
       height: 250,
       borderWidth: 2,
-      margin: 10, 
-      padding: 6,
+      margin: 10
   },
   submitButton:{
       justifyContent: 'center',
       alignSelf: 'center',
       backgroundColor: 'pink',
       width: 80,
-      height: 40,color:'black',
+      height: 40
   },
   buttonText: {
       textAlign: 'center',
       color: 'white',
-      fontWeight: 'bold',
-      color:'black',
+      fontWeight: 'bold'
   }
 });
