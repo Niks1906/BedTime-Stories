@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "bedTimeStories",
-    "slug": "bedTimeStories",
+    "name": "p-pro-70",
+    "slug": "snack-df8db2d8-97a0-4eea-bb67-63db1ba5ab74",
     "privacy": "public",
-    "sdkVersion": "36.0.0",
+    "sdkVersion": "35.0.0",
     "platforms": [
       "ios",
       "android",
